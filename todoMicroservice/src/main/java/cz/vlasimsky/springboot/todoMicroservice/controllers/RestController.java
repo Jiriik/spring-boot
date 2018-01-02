@@ -50,5 +50,15 @@ public class RestController {
         return "Todo description = " + todo.getDescription() + ", priority = " + todo.getPriority();
     }
 
+    @RequestMapping("/todoInInput5")
+    public String todoInInput5(@Valid Todo todo, BindingResult result) {
+        ToDoValidator validator = new ToDoValidator();
+        validator.validate(todo, result);
+        if (result.hasErrors()) {
+            return "my custom formatted error messages" + result.toString();
+        }
+        return "Todo description = " + todo.getDescription() + ", priority = " + todo.getPriority();
+    }
+
 
 }
